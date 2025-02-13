@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Textos Encantamento</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+    header {
+      background-color: #007bff;
+      color: white;
+      padding: 1em 0;
+      text-align: center;
+    }
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+    .form-group {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .form-group .form-field {
+      flex: 1;
+    }
+    select, input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 20px;
+      display: block;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #scriptArea, #observacoesArea {
+      background-color: #f9f9f9;
+      padding: 1em;
+      border: 1px solid #ddd;
+      margin-top: 10px;
+      white-space: pre-wrap;
+      font-family: monospace;
+    }
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .button-group button {
+      flex: 1;
+    }
+  </style>
+  <script>
+    let empresas = [];  // Para armazenar as lojas e seus endereços
+
+    async function carregarDados() {
+      const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEqHGyj_h7Ii2-sjTW3j2KrCos3ohCxN-4aD465YQT1sIZ-IEc5ZkEVN6U-CLG_-BxYARJtUFdF-rf/pubhtml?gid=0&single=true";
+      
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Erro na resposta do servidor.");
+        
+        const html = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+
+        const rows = doc.querySelectorAll("table tbody tr");
+
+        const select = document.getElementById("tituloSelect");
+        const lojasSelect = document.getElementById("empresa");
+        const mesesSelect = document.getElementById("mes");
+
+        select.innerHTML = '<option value="">Selecione um título</option>';
+        lojasSelect.innerHTML = '<option value="">Selecione uma loja</option>';
+        mesesSelect.innerHTML = '<option value="">Seleciona um mês</option>';
+
+        rows.forEach((row, index) => {
+          const cells = row.querySelectorAll("td");
+          if (index === 0) return; // Ignora o cabeçalho
+
+          const titulo = cells[0]?.textContent?.trim();
+          let script = cells[1]?.textContent?.trim();
+          let observacoes = cells[2]?.textContent?.trim();
+          const loja = cells[6]?.textContent?.trim();
+          const endereco = cells[7]?.textContent?.trim(); // Supondo que o endereço está na coluna 7
+          const mes = cells[8]?.textContent?.trim(); 
+
+          if (titulo && script) {
+            script = script.replace(/;/g, "\n").replace(/{{(.*?)}}/g, "*{{$1}}*");
+            observacoes = observacoes.replace(/;/g, "\n").replace(/{{(.*?)}}/g, "*{{$1}}*");
+
+            const option = document.createElement("option");
+            option.value = JSON.stringify({ script, observacoes, loja, endereco });
+            option.textContent = titulo;
+            select.appendChild(option);
+          }
+
+          if (loja) {
+            const lojaOption = document.createElement("option");
+            lojaOption.value = loja;
+            lojaOption.textContent = loja;
+            lojasSelect.appendChild(lojaOption);
+          }
+
+          if (mes && !mesesSelect.querySelector(`option[value="${mes}"]`)) {
+            const mesOption = document.createElement("option");
+            mesOption.value = mes;
+            mesOption.textContent = mes;
+            mesesSelect.appendChild(mesOption);
+          }
+
+          // Adiciona loja e endereço ao array empresas
+          if (loja && endereco) {
+            empresas.push({ loja, endereco });
+          }
+        });
+
+        select.addEventListener("change", () => atualizarDados());
+        lojasSelect.addEventListener("change", () => atualizarDados());
+      } catch (error) {
+        console.error("Erro ao carregar dados:", error);
+        alert("Erro ao carregar os dados. Verifique o link publicado.");
+      }
+    }
+
+    function atualizarDados() {
+      const select = document.getElementById("tituloSelect");
+      const { script, observacoes, loja } = JSON.parse(select.value || "{}");
+
+      const cliente = document.getElementById("cliente").value || "CLIENTE";
+      const veiculo = document.getElementById("veiculo").value || "VEICULO";
+      const empresa = document.getElementById("empresa").value || "EMPRESA";
+      const encantador = document.getElementById("encantador").value || "NOME";
+      const vendedor = document.getElementById("vendedor").value || "VENDEDOR";
+      const mes = document.getElementById("mes").value || "MÊS";
+
+      // Encontra o endereço da loja selecionada
+      const enderecoLoja = empresas.find(e => e.loja === empresa)?.endereco || "ENDEREÇO";
+
+      const scriptFinal = script
+        ?.replace(/\*{{CLIENTE}}\*/g, `*${cliente}*`)
+        .replace(/\*{{VEICULO}}\*/g, `*${veiculo}*`)
+        .replace(/\*{{EMPRESA}}\*/g, `*${empresa}*`)
+        .replace(/\*{{NOME}}\*/g, `*${encantador}*`)
+        .replace(/\*{{VENDEDOR}}\*/g, `*${vendedor}*`)
+        .replace(/\*{{MÊS}}\*/g, `*${mes}*`)
+        .replace(/\*{{ENDEREÇO}}\*/g, `*${enderecoLoja}*`); // Substitui {{ENDEREÇO}}
+
+      const observacoesFinal = observacoes
+        ?.replace(/\*{{CLIENTE}}\*/g, `*${cliente}*`)
+        .replace(/\*{{VEICULO}}\*/g, `*${veiculo}*`)
+        .replace(/\*{{EMPRESA}}\*/g, `*${empresa}*`)
+        .replace(/\*{{NOME}}\*/g, `*${encantador}*`)
+        .replace(/\*{{VENDEDOR}}\*/g, `*${vendedor}*`)
+        .replace(/\*{{MÊS}}\*/g, `*${mes}*`)
+        .replace(/\*{{ENDEREÇO}}\*/g, `*${enderecoLoja}*`); // Substitui {{ENDEREÇO}}
+
+      document.getElementById("scriptArea").textContent = scriptFinal || "";
+      document.getElementById("observacoesArea").textContent = observacoesFinal || "";
+    }
+
+    function copiarScript() {
+      const scriptArea = document.getElementById("scriptArea");
+      const text = scriptArea.textContent;
+
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+
+      alert("Script copiado para a área de transferência!");
+    }
+
+    function atualizarPagina() {
+      const url = window.location.href;
+      const separator = url.includes('?') ? '&' : '?';
+      window.location.href = url + separator + 'cache_bust=' + new Date().getTime();
+    }
+  </script>
+</head>
+<body onload="carregarDados()">
+  <header>
+    <h1>Textos para Clientes do Encantamento</h1>
+  </header>
+  <main>
+    <label for="tituloSelect">Título</label>
+    <select id="tituloSelect"></select>
+
+    <div class="form-group">
+      <div class="form-field">
+        <label for="cliente">Cliente</label>
+        <input type="text" id="cliente" placeholder="Nome do cliente">
+      </div>
+      <div class="form-field">
+        <label for="encantador">Encantador(a) ou Gerente</label>
+        <input type="text" id="encantador" placeholder="Nome do(a) Encantador(a) ou Gerente">
+      </div>
+      <div class="form-field">
+        <label for="vendedor">Vendedor (Opcional)</label>
+        <input type="text" id="vendedor" placeholder="Nome do vendedor">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="form-field">
+        <label for="empresa">Loja</label>
+        <select id="empresa"></select>
+      </div>
+      <div class="form-field">
+        <label for="veiculo">Veículo</label>
+        <input type="text" id="veiculo" placeholder="Veículo interessado">
+      </div>
+      <div class="form-field">
+        <label for="mes">Mês (Opcional)</label>
+        <select id="mes"></select>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button onclick="atualizarDados()">Atualizar Script</button>
+      <button onclick="copiarScript()">Copiar Script</button>
+      <button onclick="atualizarPagina()">Atualizar a página (SHIFT + F5)</button>
+    </div>
+
+    <div id="scriptArea"></div>
+    <div id="observacoesArea"></div>
+  </main>
+</body>
+</html>
