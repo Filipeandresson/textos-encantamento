@@ -111,7 +111,8 @@
           let observacoes = cells[2]?.textContent?.trim();
           const loja = cells[6]?.textContent?.trim();
           const endereco = cells[7]?.textContent?.trim(); // Supondo que o endereço está na coluna 7
-          const mes = cells[8]?.textContent?.trim(); 
+          const mes = cells[8]?.textContent?.trim();
+          const localizacao = cells[9]?.textContent?.trim();
 
           if (titulo && script) {
             script = script.replace(/;/g, "\n").replace(/{{(.*?)}}/g, "*{{$1}}*");
@@ -139,8 +140,9 @@
 
           // Adiciona loja e endereço ao array empresas
           if (loja && endereco) {
-            empresas.push({ loja, endereco });
+            empresas.push({ loja, endereco, localizacao });
           }
+
         });
 
         select.addEventListener("change", () => atualizarDados());
@@ -165,6 +167,9 @@
       // Encontra o endereço da loja selecionada
       const enderecoLoja = empresas.find(e => e.loja === empresa)?.endereco || "ENDEREÇO";
 
+      // Encontra a localizacao da loja selecionada
+      const localizacaoLoja = empresas.find(e => e.loja === empresa)?.localizacao || "LOCALIZACAO";
+
       const scriptFinal = script
         ?.replace(/\*{{CLIENTE}}\*/g, `*${cliente}*`)
         .replace(/\*{{VEICULO}}\*/g, `*${veiculo}*`)
@@ -172,7 +177,9 @@
         .replace(/\*{{NOME}}\*/g, `*${encantador}*`)
         .replace(/\*{{VENDEDOR}}\*/g, `*${vendedor}*`)
         .replace(/\*{{MÊS}}\*/g, `*${mes}*`)
-        .replace(/\*{{ENDEREÇO}}\*/g, `*${enderecoLoja}*`); // Substitui {{ENDEREÇO}}
+        .replace(/\*{{ENDEREÇO}}\*/g, `*${enderecoLoja}*`) // Substitui {{ENDEREÇO}}
+        .replace(/\*{{LOCALIZACAO}}\*/g, `*${localizacaoLoja}*`); // Substitui {{LOCALIZACAO}}
+
 
       const observacoesFinal = observacoes
         ?.replace(/\*{{CLIENTE}}\*/g, `*${cliente}*`)
@@ -181,7 +188,9 @@
         .replace(/\*{{NOME}}\*/g, `*${encantador}*`)
         .replace(/\*{{VENDEDOR}}\*/g, `*${vendedor}*`)
         .replace(/\*{{MÊS}}\*/g, `*${mes}*`)
-        .replace(/\*{{ENDEREÇO}}\*/g, `*${enderecoLoja}*`); // Substitui {{ENDEREÇO}}
+        .replace(/\*{{ENDEREÇO}}\*/g, `*${enderecoLoja}*`) // Substitui {{ENDEREÇO}}
+        .replace(/\*{{LOCALIZACAO}}\*/g, `*${localizacaoLoja}*`); // Substitui {{LOCALIZACAO}}
+
 
       document.getElementById("scriptArea").textContent = scriptFinal || "";
       document.getElementById("observacoesArea").textContent = observacoesFinal || "";
