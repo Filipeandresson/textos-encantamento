@@ -1,0 +1,137 @@
+[
+  {
+    "titulo": "1° Conexão - DESCOBERTA (PERGUNTAS)",
+    "script": "{{CLIENTE}}, tudo bem?\n\nSou a *{{NOME}}*, da {{EMPRESA}}. \nTe liguei há pouco para falarmos sobre o {{VEICULO}}. \n\nPosso te ligar?",
+    "observacoes": "\nQual seu nome?\nVocê já conhece o veículo? (NÃO PERCA A OPORTUNIDADE DE CHAMAR PARA O TESTE DRIVE)\nQual a versão/modelo/cor?\nTem veículo para colocar no negócio? Qual modelo?\nPretende financiar? (LEMBRE-SE TRABALHAMOS COM TODOS OS BANCOS)\nQual valor da parcela ideal?\nJá chegou a pesquisar em outra loja? (ENTENDER SE TEMOS UMA PROPOSTA DE OUTRA LOJA - COBRIMOS!!!)\nEstá pesquisando ou quer comprar agora? (ESTE É PRA SABER SE ELE JÁ VAI COMPRAR OU PENSA NO FUTURO)\n\nPerguntas complementares:\nJá comprou veículo financiado anteriormente.\nHaverá participação de algum familiar ou cônjuge na negociação? (O objetivo é entender se o carro poderá ser financiado no nome do cônjuge, pai, mãe, irmão).",
+    "loja": "Jeep Via Motors | Aeroporto - DF",
+    "endereco": "Setor de Concessionárias e Locadoras do Aeroporto, Nº 07 - Brasília DF | 71.608-900",
+    "mes": "Janeiro",
+    "localizacao": "https://maps.app.goo.gl/W6KH2HPayFeQyfVB9"
+  },
+  {
+    "titulo": "1° Conexão - AURORA",
+    "script": "Olá, aqui é {{NOME}} da {{EMPRESA}}.\n\nSobre o {{VEICULO}} de interesse, vou esclarecer todas as suas dúvidas, posso te ligar?",
+    "observacoes": "",
+    "loja": "Jeep Via Motors | Valparaíso - GO",
+    "endereco": "Q 19, Lt. 01, Gleba F Bairro Park Esplanada 03 - Valparaíso GO | 72.876-319",
+    "mes": "Fevereiro",
+    "localizacao": "https://maps.app.goo.gl/Ufs6GoN3rdjFvvRL6"
+  },
+  {
+    "titulo": "1° Conexão - DESCOBERTA (PERGUNTAS) - YAMAHA",
+    "script": "{{CLIENTE}}, tudo bem?\n\nSou a *{{NOME}}*, da {{EMPRESA}}. \nTe liguei há pouco para falarmos sobre o {{VEICULO}}. \n\nPosso te ligar?",
+    "observacoes": "Qual seu nome?\nVocê já conhece a moto? Tem alguma dúvida?\nPossui valor de entrada? Qual valor?\nPretende financiar? (TRABALHAMOS COM TODOS OS BANCOS FINANCEIRAS E TEMOS CONSÓRCIO)\nQual valor ideal da parcela?\nJá pesquisou em outra loja? (Essa informação é importante para identificar se há concorrência, seja da mesma marca ou de outra).\nEstá pesquisando ou quer comprar agora?\nObservação:",
+    "loja": "Jeep Via Motors | Montes Claros - MG",
+    "endereco": "Av. Deputado Plínio Ribeiro, Nº 805, Loja A - Esplanada - Montes Claros MG | 39.400-839",
+    "mes": "Março",
+    "localizacao": "https://maps.app.goo.gl/N8vsf9vjoWXW3PEP6"
+  },
+  {
+    "titulo": "1° Conexão - E-MAIL (CASOS EM QUE NÃO TEM O TELEFONE)",
+    "script": "Olá, {{CLIENTE}}! \n\nMeu nome é {{NOME}}, aqui da {{EMPRESA}},o motivo do meu contato é referente ao interesse no veículo {{VEICULO}}. \n\nPoderia nos informar o número do *seu telefone* ou *whatsapp* para prosseguirmos com o seu atendimento? \n\nMas, caso preferir podemos continuar por aqui!\n\nVocê já conhece o veículo? Tem interesse em fazer test-drive?\nQual a versão/modelo/cor?\nTem veículo para colocar no negócio? Qual modelo?\nPretende financiar? \nQual valor da parcela ideal?\n\nAtenciosamente, \n {{NOME}} - {{EMPRESA}}",
+    "observacoes": "Alterar o número *(61) XXXXX-XXXX*, para o seu contato.",
+    "loja": "Jeep Via Motors | Barreiras - BA",
+    "endereco": "Rodovia Br-020, Nº 209 - Vila Rica - Barreiras BA | 47.813-010",
+    "mes": "Abril",
+    "localizacao": "https://maps.app.goo.gl/NHM12t8RpoizJnGW7"
+  },
+  {
+    "titulo": "1° Conexão - WHATSAPP PARA CLIENTES QUE NÃO ATENDERAM NOSSA LIGAÇÃO - 1° Tentativa",
+    "script": "Olá, {{CLIENTE}}\n\nSou a *{{NOME}}*, da {{EMPRESA}}. \nTe liguei há pouco para lhe as informações referente ao seu interesse {{VEICULO}}. \n\nAssim que possível, posso te ligar?",
+    "observacoes": "- Priorize sempre falar ao telefone para evitar ao máximo mensagens escritas. \n- Caso o potencial comprador solicite contato apenas pelo WhatsApp, pergunte se pode enviar um áudio. \n- O áudio não deve ultrapassar 30 segundos. \n- Use um tom de empatia para criar uma boa conexão inicial e \"quebrar o gelo\" com o cliente.",
+    "loja": "Jeep Via Motors | Palmas - TO",
+    "endereco": "Quadra Acsu-Se 40, Av. Ns 2, 14 - Quadra 402 Sul, Conjunto 2 - Plano Diretor Sul - Palmas TO | 77.021-634",
+    "mes": "Maio",
+    "localizacao": "https://maps.app.goo.gl/R9qwQkfGDFZMenUz7"
+  },
+  {
+    "titulo": "1° Conexão - WHATSAPP PARA CLIENTES QUE NÃO ATENDERAM NOSSA LIGAÇÃO - 2° Tentativa",
+    "script": "Olá, {{CLIENTE}}, \n\nAqui é {{NOME}} - {{EMPRESA}} te enviamos uma mensagem sobre o {{VEICULO}}, ficou alguma dúvida?\n\nAguardamos seu retorno, tenho certeza que vamos fazer a melhor NEGOCIAÇÃO!",
+    "observacoes": "",
+    "loja": "Jeep Via Motors | Araguaina - TO",
+    "endereco": "Avenida Santos Dumont - S/N Qd 11 Lt 12 - Araguaína TO | 77.826-170",
+    "mes": "Junho",
+    "localizacao": "https://maps.app.goo.gl/CWwd28HKhgLy6jDW9"
+  },
+  {
+    "titulo": "1° Conexão - WHATSAPP PARA CLIENTES QUE NÃO ATENDERAM NOSSA LIGAÇÃO - 3° Tentativa",
+    "script": "{{CLIENTE}}, tudo bem?\nAqui é a {{NOME}} da {{EMPRESA}}.\n\nSobre o {{VEICULO}}, já encontrou o que procurava? Caso tenha interesse conseguimos uma condição especial para voce!\n\n Podemos falar agora?",
+    "observacoes": "",
+    "loja": "Jeep Via Motors | Lem - BA",
+    "endereco": "Florais Léa, Bloco Ii - R. Enedino Alves Da Paixão, Nº 4728 - Lot. Lea Cordeiro - Luís Eduardo Magalhães BA | 47.855-304",
+    "mes": "Julho",
+    "localizacao": "https://maps.app.goo.gl/3EYsvBj44VNHBcGw6"
+  },
+  {
+    "titulo": "2° Tratativa - WHATSAPP PARA CLIENTES QUE NÃO ATENDERAM NOSSA LIGAÇÃO",
+    "script": "Olá, {{CLIENTE}}\n\nSou a *{{NOME}}*, da {{EMPRESA}}. \nTe liguei há pouco para falarmos sobre o {{VEICULO}}. \n\nAssim que possível, posso te ligar? Tenho uma condição especial para você!",
+    "observacoes": "- Priorize sempre falar ao telefone para evitar ao máximo mensagens escritas. \n- Caso o potencial comprador solicite contato apenas pelo WhatsApp, pergunte se pode enviar um áudio. \n- O áudio não deve ultrapassar 30 segundos. \n- Use um tom de empatia para criar uma boa conexão inicial e \"quebrar o gelo\" com o cliente.",
+    "loja": "Jeep Via Motors | Cristalina - GO",
+    "endereco": "Rua Barão Attie Sn, Quadra 01, Lote 03, Bloco 2 - Cristalina GO | 73.850-000",
+    "mes": "Agosto",
+    "localizacao": "https://maps.app.goo.gl/HTNMUPhNgDaLiV8z6"
+  },
+  {
+    "titulo": "3° Negociação - CLIENTE AGENDADO - CONFIRMAÇÃO DE DIA, HORÁRIO E LOCALIZAÇÃO DA LOJA.",
+    "script": "{{CLIENTE}}, aqui é o {{NOME}} da {{EMPRESA}}.\n\nSeu agendamento foi confirmado com sucesso! \n*XXX-feira, às 00:00h (00/06/2025)* \n\n- *Veículo de interesse:* {{VEICULO}} \n- *Consultor de vendas:* {{VENDEDOR}} \n\nSegue abaixo nosso endereço e localização:\n*Endereço da loja:* {{ENDEREÇO}} \n*Localização da loja:* {{LOCALIZACAO}}",
+    "observacoes": "Alterar a data e hora.",
+    "loja": "Primavia Fiat | Aeroport - DF",
+    "endereco": "Uc 4007 Area Especial - Lago Sul - Brasília DF | 71.608-900",
+    "mes": "Setembro",
+    "localizacao": "https://maps.app.goo.gl/3NFuhBqakUWGwaP8A"
+  },
+  {
+    "titulo": "3° Negociação - CONFIRMAÇÃO DE AGENDAMENTO (CLIENTE AGENDADO QUE NÃO ESTÁ NO FLUXO)",
+    "script": "Olá, {{CLIENTE}}! \nAqui é a {{NOME}} da {{EMPRESA}}\n\nConseguiu vir a loja?",
+    "observacoes": "Alterar as datas (XXX)",
+    "loja": "Primavia Fiat | Valparaíso - GO",
+    "endereco": "Marginal Da Br 040 S/N, Lote 01, Quadra 19 – Gleba F – Parque Esplanada III - Valparaíso GO | 72.876-319",
+    "mes": "Outubro",
+    "localizacao": "https://maps.app.goo.gl/BzXdnyA2NModvnRM7"
+  },
+  {
+    "titulo": "7° Finalizar - CLIENTE NÃO RESPONDE AOS CHAMADOS OU JÁ COMPROU",
+    "script": "Olá, {{CLIENTE}}!\n\nAqui é a {{NOME}} da {{EMPRESA}}, tudo bem? \n\nNão recebemos seu retorno e também não conseguimos contato referente ao {{VEICULO}}.\nEstou finalizando seu atendimento, mas, caso precise só me chamar!",
+    "observacoes": "",
+    "loja": "Primavia Fiat | Formosa - GO",
+    "endereco": "Avenida Cristalina, Nº 202 - Setor Sul - Formosa GO | 73.802-410",
+    "mes": "Novembro",
+    "localizacao": "https://maps.app.goo.gl/MHK5qySPJLMqqFA58"
+  },
+  {
+    "titulo": "9° Prospecção - WHATSAPP - CLIENTE DE PROSPECÇÃO",
+    "script": "Olá, {{CLIENTE}}!\n\nMeu nome é {{NOME}}, e falo em nome da {{EMPRESA}}. Como vai?\n\nEstou entrando em contato para saber se o senhor tem interesse em trocar de veículo neste momento. Este mês de {{MÊS}}, temos condições especiais e exclusivas para nossos clientes.\n\nFico à disposição para mais informações!",
+    "observacoes": "Normalmente são os LEADS DA WEBMOTORS.",
+    "loja": "Primavia Fiat | Luziânia - GO",
+    "endereco": "Avenida Marginal A, Nº 710 - Vila Juracy - Luziânia GO | 72.814-090",
+    "mes": "Dezembro",
+    "localizacao": "https://maps.app.goo.gl/vPHvCLCSAP7wnPw4A"
+  },
+  {
+    "titulo": "WHATSAPP - CLIENTE QUE JÁ VISITOU A LOJA, PORÉM SEM RETORNO DO VENDEDOR",
+    "script": "Olá, {{CLIENTE}}, aqui é {{NOME}} da {{EMPRESA}}. Tudo bem?\n\nGostaria de saber como foi seu atendimento em nossa loja. Ficou alguma dúvida ou algo que possamos ajudar?",
+    "observacoes": "Priorizar ligação antes da mensagem.",
+    "loja": "Primavia Fiat | Unaí - MG",
+    "endereco": "Rua Virgílio Justiniano Ribeiro, Nº 1.091 - Centro - Unaí MG | 38.610-001",
+    "mes": "",
+    "localizacao": "https://maps.app.goo.gl/588LF3JGp2t8t92bA"
+  },
+  {
+    "titulo": "RETORNAR - CHAMADA PERDIDA",
+    "script": "\"Oi, {{CLIENTE}}, aqui é {{NOME}} da {{EMPRESA}}. Tudo bem?\n\nVocê nos ligou há pouco e tentamos retornar, mas não conseguimos contato.\n\nPodemos falar agora?",
+    "observacoes": "",
+    "loja": "Primavia Fiat | Paracatu - MG",
+    "endereco": "Br 040 Km 43,5, Nº 1851 - Nossa Senhora de Fátima - Paracatu MG | 38.600-000",
+    "mes": "",
+    "localizacao": "https://maps.app.goo.gl/ghb68QZPZ21oTtyh9"
+  },
+  {
+    "titulo": "99 BUSCA E RESGATE",
+    "script": "Olá, {{CLIENTE}}, aqui é {{NOME}} da {{EMPRESA}}. Tudo bem?\n\nGostaria de saber como foi seu atendimento em nossa loja. Ficou alguma dúvida em relação a sua negociação com o consultor {{VENDEDOR}} sobre o {{VEICULO}}?",
+    "observacoes": "",
+    "loja": "Primavia Fiat | Barreiras - BA",
+    "endereco": "Rodovia Br 242 Km 02, Nº 01 - Novo Horizonte - Barreiras BA | 47.807-510",
+    "mes": "",
+    "localizacao": "https://maps.app.goo.gl/56VgEMPgrunRqVwK9"
+  }
+]
