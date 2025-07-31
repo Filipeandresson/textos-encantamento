@@ -79,133 +79,68 @@
     }
   </style>
   <script>
-    let empresas = [];  // Para armazenar as lojas e seus endereços
+  let empresas = [];  // Para armazenar as lojas e seus endereços
 
-    async function carregarDados() {
-      const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEqHGyj_h7Ii2-sjTW3j2KrCos3ohCxN-4aD465YQT1sIZ-IEc5ZkEVN6U-CLG_-BxYARJtUFdF-rf/pubhtml?gid=0&single=true";
+  async function carregarDados() {
+    try {
+      const response = await fetch("dados.json");
+      if (!response.ok) throw new Error("Erro ao carregar dados.json");
       
-      try {
-        const response = await fetch("dados.json");
-        if (!response.ok) throw new Error("Erro na resposta do servidor.");
-        
-        const html = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, "text/html");
+      const data = await response.json();
 
-        const rows = doc.querySelectorAll("table tbody tr");
-
-        const select = document.getElementById("tituloSelect");
-        const lojasSelect = document.getElementById("empresa");
-        const mesesSelect = document.getElementById("mes");
-
-        select.innerHTML = '<option value="">Selecione um título</option>';
-        lojasSelect.innerHTML = '<option value="">Selecione uma loja</option>';
-        mesesSelect.innerHTML = '<option value="">Seleciona um mês</option>';
-
-        rows.forEach((row, index) => {
-          const cells = row.querySelectorAll("td");
-          if (index === 0) return; // Ignora o cabeçalho
-
-          const titulo = cells[0]?.textContent?.trim();
-          let script = cells[1]?.textContent?.trim();
-          let observacoes = cells[2]?.textContent?.trim();
-          const loja = cells[6]?.textContent?.trim();
-          const endereco = cells[7]?.textContent?.trim(); // Supondo que o endereço está na coluna 7
-          const mes = cells[8]?.textContent?.trim(); 
-
-          if (titulo && script) {
-            script = script.replace(/;/g, "\n").replace(/{{(.*?)}}/g, "*{{$1}}*");
-            observacoes = observacoes.replace(/;/g, "\n").replace(/{{(.*?)}}/g, "*{{$1}}*");
-
-            const option = document.createElement("option");
-            option.value = JSON.stringify({ script, observacoes, loja, endereco });
-            option.textContent = titulo;
-            select.appendChild(option);
-          }
-
-          if (loja) {
-            const lojaOption = document.createElement("option");
-            lojaOption.value = loja;
-            lojaOption.textContent = loja;
-            lojasSelect.appendChild(lojaOption);
-          }
-
-          if (mes && !mesesSelect.querySelector(`option[value="${mes}"]`)) {
-            const mesOption = document.createElement("option");
-            mesOption.value = mes;
-            mesOption.textContent = mes;
-            mesesSelect.appendChild(mesOption);
-          }
-
-          // Adiciona loja e endereço ao array empresas
-          if (loja && endereco) {
-            empresas.push({ loja, endereco });
-          }
-        });
-
-        select.addEventListener("change", () => atualizarDados());
-        lojasSelect.addEventListener("change", () => atualizarDados());
-      } catch (error) {
-        console.error("Erro ao carregar dados:", error);
-        alert("Erro ao carregar os dados. Verifique o link publicado.");
-      }
-    }
-
-    function atualizarDados() {
       const select = document.getElementById("tituloSelect");
-      const { script, observacoes, loja } = JSON.parse(select.value || "{}");
+      const lojasSelect = document.getElementById("empresa");
+      const mesesSelect = document.getElementById("mes");
 
-      const cliente = document.getElementById("cliente").value || "CLIENTE";
-      const veiculo = document.getElementById("veiculo").value || "VEICULO";
-      const empresa = document.getElementById("empresa").value || "EMPRESA";
-      const encantador = document.getElementById("encantador").value || "NOME";
-      const vendedor = document.getElementById("vendedor").value || "VENDEDOR";
-      const mes = document.getElementById("mes").value || "MÊS";
+      select.innerHTML = '<option value="">Selecione um título</option>';
+      lojasSelect.innerHTML = '<option value="">Selecione uma loja</option>';
+      mesesSelect.innerHTML = '<option value="">Selecione um mês</option>';
 
-      // Encontra o endereço da loja selecionada
-      const enderecoLoja = empresas.find(e => e.loja === empresa)?.endereco || "ENDEREÇO";
+      empresas = []; // Limpa antes de preencher
 
-      const scriptFinal = script
-        ?.replace(/\*{{CLIENTE}}\*/g, `*${cliente}*`)
-        .replace(/\*{{VEICULO}}\*/g, `*${veiculo}*`)
-        .replace(/\*{{EMPRESA}}\*/g, `*${empresa}*`)
-        .replace(/\*{{NOME}}\*/g, `*${encantador}*`)
-        .replace(/\*{{VENDEDOR}}\*/g, `*${vendedor}*`)
-        .replace(/\*{{MÊS}}\*/g, `*${mes}*`)
-        .replace(/\*{{ENDEREÇO}}\*/g, `*${enderecoLoja}*`); // Substitui {{ENDEREÇO}}
+      data.forEach(item => {
+        const { titulo, script, observacoes, loja, endereco, mes } = item;
 
-      const observacoesFinal = observacoes
-        ?.replace(/\*{{CLIENTE}}\*/g, `*${cliente}*`)
-        .replace(/\*{{VEICULO}}\*/g, `*${veiculo}*`)
-        .replace(/\*{{EMPRESA}}\*/g, `*${empresa}*`)
-        .replace(/\*{{NOME}}\*/g, `*${encantador}*`)
-        .replace(/\*{{VENDEDOR}}\*/g, `*${vendedor}*`)
-        .replace(/\*{{MÊS}}\*/g, `*${mes}*`)
-        .replace(/\*{{ENDEREÇO}}\*/g, `*${enderecoLoja}*`); // Substitui {{ENDEREÇO}}
+        if (titulo && script) {
+          // Ajusta formatação igual seu código original
+          let scriptFormatado = script.replace(/;/g, "\n").replace(/{{(.*?)}}/g, "*{{$1}}*");
+          let observacoesFormatado = observacoes ? observacoes.replace(/;/g, "\n").replace(/{{(.*?)}}/g, "*{{$1}}*") : "";
 
-      document.getElementById("scriptArea").textContent = scriptFinal || "";
-      document.getElementById("observacoesArea").textContent = observacoesFinal || "";
+          const option = document.createElement("option");
+          option.value = JSON.stringify({ script: scriptFormatado, observacoes: observacoesFormatado, loja, endereco });
+          option.textContent = titulo;
+          select.appendChild(option);
+        }
+
+        if (loja && !Array.from(lojasSelect.options).some(opt => opt.value === loja)) {
+          const lojaOption = document.createElement("option");
+          lojaOption.value = loja;
+          lojaOption.textContent = loja;
+          lojasSelect.appendChild(lojaOption);
+        }
+
+        if (mes && !Array.from(mesesSelect.options).some(opt => opt.value === mes)) {
+          const mesOption = document.createElement("option");
+          mesOption.value = mes;
+          mesOption.textContent = mes;
+          mesesSelect.appendChild(mesOption);
+        }
+
+        // Adiciona loja e endereço ao array empresas se ainda não existir
+        if (loja && endereco && !empresas.find(e => e.loja === loja)) {
+          empresas.push({ loja, endereco });
+        }
+      });
+
+      select.addEventListener("change", atualizarDados);
+      lojasSelect.addEventListener("change", atualizarDados);
+
+    } catch (error) {
+      console.error("Erro ao carregar dados:", error);
+      alert("Erro ao carregar os dados do arquivo JSON.");
     }
+  }
 
-    function copiarScript() {
-      const scriptArea = document.getElementById("scriptArea");
-      const text = scriptArea.textContent;
-
-      const textarea = document.createElement("textarea");
-      textarea.value = text;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textarea);
-
-      alert("Script copiado para a área de transferência!");
-    }
-
-    function atualizarPagina() {
-      const url = window.location.href;
-      const separator = url.includes('?') ? '&' : '?';
-      window.location.href = url + separator + 'cache_bust=' + new Date().getTime();
-    }
   </script>
 </head>
 <body onload="carregarDados()">
